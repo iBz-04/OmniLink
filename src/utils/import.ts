@@ -86,8 +86,8 @@ export const validateExportV1 = (data: ExportV1): data is ExportV1 => {
   return validateAndFixChats(data.chats ?? []) && validateFolders(data.folders);
 };
 
-// Convert OpenAI chat format to KoalaClient format
-export const convertOpenAIToKoalaClientFormat = (
+// Convert OpenAI chat format to OmniLink format
+export const convertOpenAIToOmniLinkFormat = (
   openAIChat: OpenAIChat
 ): ChatInterface => {
   const messages: MessageInterface[] = [];
@@ -123,7 +123,7 @@ export const convertOpenAIToKoalaClientFormat = (
   };
 };
 
-// Import OpenAI chat data and convert it to KoalaClient format
+// Import OpenAI chat data and convert it to OmniLink format
 export const importOpenAIChatExport = (openAIChatExport: OpenAIChat[]) => {
-  return openAIChatExport.map(convertOpenAIToKoalaClientFormat);
+  return openAIChatExport.map(convertOpenAIToOmniLinkFormat);
 };
