@@ -1,0 +1,29 @@
+{
+    "configuration": "Yapılandırma",
+    "model": "Model",
+    "token": {
+      "label": "Max Token",
+      "description": "Sohbet tamamlama sırasında üretilecek maksimum token sayısı. Girdi tokenlarının ve üretilen tokenların toplam uzunluğu, modelin bağlam uzunluğu tarafından sınırlanmıştır."
+    },
+    "default": "Varsayılan",
+    "temperature": {
+      "label": "Sıcaklık",
+      "description": "0 ile 2 arasında kullanılacak örnekleme sıcaklığı. 0,8 gibi daha yüksek değerler çıktıyı daha rastgele hale getirirken, 0,2 gibi daha düşük değerler çıktıyı daha odaklı ve deterministik hale getirir. Genelde bu ayar ile top-p'yi aynı anda değiştirmemenizi öneririz. (Varsayılan: 1)"
+    },
+    "presencePenalty": {
+      "label": "Mevcudiyet Cezası",
+      "description": "-2,0 ile 2,0 arasında bir değer. Pozitif değerler, modelin yeni konular hakkında konuşma olasılığını artırarak metinde şimdiye kadar geçen yeni tokenları cezalandırır. (Varsayılan: 0)"
+    },
+    "topP": {
+      "label": "Top-p",
+      "description": "0 ile 1 arasında bir değer. Sıcaklık örneklemesine alternatif olan çekirdek örnekleme adı verilen bir yöntem, modelin en yüksek top-p olasılık kütlesine sahip tokenların sonuçlarını dikkate almasını sağlar. Örneğin, 0,1 yalnızca en yüksek %10 olasılık kütlesini oluşturan tokenları dikkate alır. Genelde bu ayar ile sıcaklığı aynı anda değiştirmemenizi öneririz. (Varsayılan: 1)"
+    },
+    "frequencyPenalty": {
+      "label": "Frekans Cezası",
+      "description": "-2,0 ile 2,0 arasında bir değer. Pozitif değerler, modelin aynı ifadeyi birebir tekrar etme olasılığını azaltarak metinde şimdiye kadar geçen frekanslarına göre yeni tokenları cezalandırır. (Varsayılan: 0)"
+    },
+    "defaultChatConfig": "Varsayılan Sohbet Yapılandırması",
+    "defaultSystemMessage": "Varsayılan Sistem Mesajı",
+    "resetToDefault": "Varsayılana Sıfırla"
+  }
+  

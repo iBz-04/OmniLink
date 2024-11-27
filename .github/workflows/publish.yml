@@ -1,0 +1,162 @@
+name: Build and publish desktop app
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  id-token: write
+
+concurrency:
+  group: releases
+  cancel-in-progress: true
+
+jobs:
+  build:
+    if: "!contains(github.event.head_commit.message, '[skip release]')"
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get version from package.json
+        id: packageJson
+        run: echo "PACKAGE_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+
+      - name: Use Node.js 22
+        uses: actions/setup-node@v3
+        with:
+          node-version: 22
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Get pnpm cache directory path
+        id: pnpm-cache-dir-path
+        run: echo "::set-output name=dir::$(pnpm cache dir)"
+
+      - name: Cache pnpm dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-pnpm-${{ hashFiles('**/pnpm.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Cache release assets
+        uses: actions/cache@v3
+        with:
+          path: ./release
+          key: ${{ runner.os }}-release-${{github.sha}}
+          restore-keys: |
+            ${{ runner.os }}-release-
+
+      - name: Build
+        run: pnpm make
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VITE_GOOGLE_CLIENT_ID: ${{ secrets.GCLIENT }}
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: release-${{ runner.os }}
+          path: ./release
+
+  release:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Get version from package.json
+        id: packageJson
+        run: echo "PACKAGE_VERSION=$(jq -r '.version' package.json)" >> $GITHUB_ENV
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN  }}
+        with:
+          tag_name: ${{ github.sha }}-${{ github.run_id }}
+          release_name: v${{env.PACKAGE_VERSION}}
+          draft: true
+          prerelease: false
+
+      - name: Download all workflow run artifacts
+        uses: actions/download-artifact@v4
+
+      - name: Upload Release Asset - Ubuntu
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-Linux/koala-client-${{env.PACKAGE_VERSION}}-linux-x86_64.AppImage
+          asset_name: KoalaClient-${{env.PACKAGE_VERSION}}-linux-x86_64.AppImage
+          asset_content_type: application
+
+      - name: Upload Release Asset - MacOS
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-macOS/koala-client-${{env.PACKAGE_VERSION}}-mac-arm64.dmg
+          asset_name: KoalaClient-${{env.PACKAGE_VERSION}}-mac-arm64.dmg
+          asset_content_type: application
+
+      - name: Upload Release Asset - Windows
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-Windows/koala-client-${{env.PACKAGE_VERSION}}-win-x64.exe
+          asset_name: KoalaClient-${{env.PACKAGE_VERSION}}-win-x64.exe
+          asset_content_type: application
+
+      - name: Zip Unpacked Release - Windows
+        run: |
+          cd ./release-Windows
+          7z a win-unpacked.zip win-unpacked/
+          cd ..
+
+      - name: Upload Unpacked Release - Windows
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./release-Windows/win-unpacked.zip
+          asset_name: KoalaClient-${{env.PACKAGE_VERSION}}-win-x64-portable.zip
+          asset_content_type: zip
+
+      - name: Zip Hash Info
+        run: |
+          7z a hash-info.zip ./release-Linux/latest-linux.yml ./release-macOS/latest-mac.yml
+          cp ./release-Windows/latest.yml ./release-Windows/latest-windows.yml
+          7z a hash-info.zip ./release-Windows/latest-windows.yml
+
+      - name: Upload Hash Info
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./hash-info.zip
+          asset_name: hash-info.zip
+          asset_content_type: zip

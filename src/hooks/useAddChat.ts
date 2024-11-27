@@ -1,0 +1,38 @@
+import useStore from '@store/store';
+import { generateDefaultChat } from '@constants/chat';
+import { ChatInterface } from '@type/chat';
+
+const useAddChat = () => {
+  const setChats = useStore((state) => state.setChats);
+  const setCurrentChatIndex = useStore((state) => state.setCurrentChatIndex);
+  const autoTitle = useStore((state) => state.autoTitle);
+
+  const addChat = (folder?: string) => {
+    const chats = useStore.getState().chats;
+    if (chats) {
+      const updatedChats: ChatInterface[] = JSON.parse(JSON.stringify(chats));
+      let titleIndex = 1;
+      let title: string;
+      if (!autoTitle) {
+        title = `New Chat ${titleIndex}`;
+      } else {
+        title = `New Chat`;
+      }
+
+      if (!autoTitle) {
+        while (chats.some((chat) => chat.title === title)) {
+          titleIndex += 1;
+          title = `New Chat ${titleIndex}`;
+        }
+      }
+
+      updatedChats.unshift(generateDefaultChat(title, folder));
+      setChats(updatedChats);
+      setCurrentChatIndex(0);
+    }
+  };
+
+  return addChat;
+};
+
+export default useAddChat;
