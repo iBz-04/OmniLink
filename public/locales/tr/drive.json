@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "name": "Google Senkronizasyonu",
     "tagline": "Google Drive ile sohbetlerinizi ve ayarlarınızı zahmetsizce senkronize edin.",
     "button": {
@@ -13,5 +14,20 @@
       "sync": "Senkronizasyon başarıyla tamamlandı!",
       "stop": "Senkronizasyon durduruldu"
     }
+=======
+  "name": "Google Senkronizasyonu",
+  "tagline": "Google Drive ile sohbetlerinizi ve ayarlarınızı zahmetsizce senkronize edin.",
+  "button": {
+    "sync": "Sohbetleri Senkronize Et",
+    "stop": "Senkronizasyonu Durdur",
+    "create": "Yeni Dosya Oluştur",
+    "confirm": "Seçimi Onayla"
+  },
+  "notice": "Not: Her ziyaretinizde veya her saat yeniden giriş yapmanız gerekebilir. Bulut depolama verilerinin üzerine yazılmasını önlemek için KoalaClient’i birden fazla cihazda aynı anda kullanmayın.",
+  "privacy": "Gizliliğiniz bizim için önemlidir ve bunu sağlamak için KoalaClient yalnızca düşük duyarlılık seviyesinde erişime sahiptir. Bu, yalnızca kendi dosya ve klasörlerini oluşturabileceği, görüntüleyebileceği ve yönetebileceği anlamına gelir.",
+  "toast": {
+    "sync": "Senkronizasyon başarıyla tamamlandı!",
+    "stop": "Senkronizasyon durduruldu"
+>>>>>>> eec51857154b5c0009ebd5e7631248aeccb0c8c1
   }
-  
+}

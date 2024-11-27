@@ -1,16 +1,15 @@
 {
-    "securityMessage": "API anahtarınızın güvenliğini önemsiyoruz ve onu en yüksek özenle yönetiyoruz. Anahtarınız yalnızca tarayıcınızda saklanır ve üçüncü taraflarla asla paylaşılmaz. Sadece OpenAI API'ye erişim sağlamak amacıyla kullanılmakta olup başka bir yetkisiz kullanım için kullanılmaz.",
-    "apiEndpoint": {
-      "inputLabel": "API Uç Noktası",
-      "description": "Resmi olmayan bir API uç noktası seçtiğinizde, bu bir vekil sunucu olarak çalışır. Vekil sunucu, cihazınız ile hedef sunucu, bu durumda OpenAI API, arasında aracı olarak görev yapar. Bu sayede, aksi takdirde erişimin kısıtlanmış olabileceği bölgelerde OpenAI API'ye erişebilirsiniz.",
-      "warn": "Ayrıca, OpenAI API'ye ücretsiz erişim sağlayan özel bir API uç noktası belirttiğinizde, API anahtarı alanını boş bırakarak ChatGPT'yi kullanabilirsiniz. Ancak, üçüncü taraf API uç noktalarını kullanırken dikkatli olmalısınız, çünkü güvenilir olmayan uç noktalar, sohbetlerdeki kişisel bilgilerinizi kaydedebilir. Gizliliğinizi ve güvenliğinizi korumak için bir API uç noktasının güvenilirliğini her zaman doğrulayın."
-    },
-    "apiKey": {
-      "howTo": "Kişisel API anahtarınızı <0>buradan</0> alın.",
-      "inputLabel": "API Anahtarı"
-    },
-    "customEndpoint": "Özel API Uç Noktası Kullan",
-    "advancedConfig": "Gelişmiş API yapılandırmasını <0>buradan</0> göster",
-    "noApiKeyWarning": "API anahtarı belirtilmedi! Lütfen API ayarlarınızı kontrol edin."
-  }
-  
+  "securityMessage": "API anahtarınızın güvenliğini önemsiyoruz ve onu en yüksek özenle yönetiyoruz. Anahtarınız yalnızca tarayıcınızda saklanır ve üçüncü taraflarla asla paylaşılmaz. Sadece OpenAI API'ye erişim sağlamak amacıyla kullanılmakta olup başka bir yetkisiz kullanım için kullanılmaz.",
+  "apiEndpoint": {
+    "inputLabel": "API Uç Noktası",
+    "description": "Resmi olmayan bir API uç noktası seçtiğinizde, bu bir vekil sunucu olarak çalışır. Vekil sunucu, cihazınız ile hedef sunucu, bu durumda OpenAI API, arasında aracı olarak görev yapar. Bu sayede, aksi takdirde erişimin kısıtlanmış olabileceği bölgelerde OpenAI API'ye erişebilirsiniz.",
+    "warn": "Ayrıca, OpenAI API'ye ücretsiz erişim sağlayan özel bir API uç noktası belirttiğinizde, API anahtarı alanını boş bırakarak ChatGPT'yi kullanabilirsiniz. Ancak, üçüncü taraf API uç noktalarını kullanırken dikkatli olmalısınız, çünkü güvenilir olmayan uç noktalar, sohbetlerdeki kişisel bilgilerinizi kaydedebilir. Gizliliğinizi ve güvenliğinizi korumak için bir API uç noktasının güvenilirliğini her zaman doğrulayın."
+  },
+  "apiKey": {
+    "howTo": "Kişisel API anahtarınızı <0>buradan</0> alın.",
+    "inputLabel": "API Anahtarı"
+  },
+  "customEndpoint": "Özel API Uç Noktası Kullan",
+  "advancedConfig": "Gelişmiş API yapılandırmasını <0>buradan</0> göster",
+  "noApiKeyWarning": "API anahtarı belirtilmedi! Lütfen API ayarlarınızı kontrol edin."
+}
