@@ -7,7 +7,7 @@ const DesktopLink = () => {
   return (
     <a
       className='flex py-2 px-1.5 items-center gap-2.5 rounded-md hover:bg-custom-white/20 transition-colors duration-200 text-custom-white cursor-pointer text-sm'
-      href='https://github.com/jackschedel/OmniLink/releases'
+      href='https://github.com/iBz-04/OmniLink/releases'
       target='_blank'
       rel='noreferrer'
     >
