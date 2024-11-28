@@ -9,7 +9,7 @@
   /* NOTE: ALSO NEEDS TO BE CHANGED ON TAILWIND CONFIG FILE */
 
   /* 10% darker/lighter using https://www.colors.tools/lighten-and-darken/ */
-  --accent-light:  121, 214, 154;
+  --accent-light: 121, 214, 154;
   --accent-base: 55, 178, 98;
   --accent-dark: 31, 100, 55;
 

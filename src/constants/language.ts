@@ -60,7 +60,7 @@ export const languageCodeToName = {
   'en-US': 'English (US)',
   'es': 'Español',
   'fr': 'Français',
-  'fr-FR': 'Français', 
+  'fr-FR': 'Français',
   'it': 'Italiano',
   'ja': '日本語',
   'ms': 'Bahasa Melayu',
@@ -73,6 +73,6 @@ export const languageCodeToName = {
   'yue': '廣東話',
   'zh': '中文',
   'zh-CN': '中文（简体）',
-  'zh-HK': '廣東話', 
+  'zh-HK': '廣東話',
   'zh-TW': '中文（台灣）',
 };
