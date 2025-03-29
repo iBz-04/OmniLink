@@ -23,7 +23,7 @@ const PromptLibraryMenu = () => {
         {t('promptLibrary')}
       </SettingsButton>
       
-      {isModalOpen && <PromptLibraryPopup setIsModalOpen={setIsModalOpen} />}
+      {isModalOpen && <PromptLibraryMenuPopUp setIsModalOpen={setIsModalOpen} />}
     </div>
   );
 };
