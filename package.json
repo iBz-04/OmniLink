@@ -11,12 +11,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "electron": "concurrently -k \"BROWSER=none pnpm dev\" \"wait-on tcp:5173 && electron .\"",
+    "electron": "concurrently -k \"cross-env BROWSER=none pnpm dev\" \"wait-on tcp:5173 && electron .\"",
     "pack": "pnpm build && electron-builder --dir",
-    "make": "pnpm build && electron-builder",
-    "lint": "tsc && eslint ./src",
-    "errors": "eslint ./src --quiet",
-    "format": "prettier --write ./"
+    "make": "pnpm build && electron-builder"
   },
   "build": {
     "appId": "OmniLink",
@@ -88,6 +85,7 @@
     "@vitejs/plugin-react-swc": "^3.7.1",
     "autoprefixer": "^10.4.20",
     "concurrently": "^8.2.2",
+    "cross-env": "^7.0.3",
     "electron": "^28.3.3",
     "electron-builder": "^23.6.0",
     "eslint": "^8.57.1",
