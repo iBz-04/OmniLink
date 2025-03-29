@@ -14,14 +14,14 @@ const ImportExportChat = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="w-full">
-      <SettingsButton 
+    <div className='w-full'>
+      <SettingsButton
         onClick={() => setIsModalOpen(true)}
         ariaLabel={t('import.export') as string}
       >
         {t('import.export')}
       </SettingsButton>
-      
+
       {isModalOpen && (
         <PopupModal
           title={`${t('import')} / ${t('export')} ${t('data')}`}

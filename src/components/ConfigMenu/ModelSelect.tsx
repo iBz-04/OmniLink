@@ -16,16 +16,16 @@ export const ModelSelect = ({
 }) => {
   const { t } = useTranslation('model');
   const modelDefs = useStore((state) => state.modelDefs);
-  
+
   // Get visible model definitions
-  const visibleModelDefs = showHidden 
-    ? modelDefs 
+  const visibleModelDefs = showHidden
+    ? modelDefs
     : modelDefs.filter((m) => m.swap_visible);
 
   return (
-    <div className="inline-flex items-center">
+    <div className='inline-flex items-center'>
       <select
-        className="bg-neutral-light text-custom-white border-0 rounded-md h-9 px-3 w-32 shadow-sm cursor-pointer focus:ring-2 focus:ring-accent-dark transition-colors duration-200"
+        className='bg-neutral-light text-custom-white border-0 rounded-md h-9 px-3 w-32 shadow-sm cursor-pointer focus:ring-2 focus:ring-accent-dark transition-colors duration-200'
         value={_model}
         onChange={(e) => {
           _setModel(Number(e.target.value));

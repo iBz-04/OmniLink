@@ -9,5 +9,4 @@
 - Max Tokens and Max Context of models
 - Responsive across devices, but is more desktop-suitable
 - Quick Keyboard shortcuts
-- Configure chats 
-
+- Configure chats

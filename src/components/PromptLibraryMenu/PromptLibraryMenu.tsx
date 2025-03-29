@@ -16,14 +16,14 @@ const PromptLibraryMenu = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="w-full">
-      <SettingsButton 
-        onClick={() => setIsModalOpen(true)}
-      >
+    <div className='w-full'>
+      <SettingsButton onClick={() => setIsModalOpen(true)}>
         {t('promptLibrary')}
       </SettingsButton>
-      
-      {isModalOpen && <PromptLibraryMenuPopUp setIsModalOpen={setIsModalOpen} />}
+
+      {isModalOpen && (
+        <PromptLibraryMenuPopUp setIsModalOpen={setIsModalOpen} />
+      )}
     </div>
   );
 };

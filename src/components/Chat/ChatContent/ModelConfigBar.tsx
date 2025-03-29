@@ -59,15 +59,15 @@ const ModelConfigBar = React.memo(() => {
               showHidden={false}
             />
           </div>
-          
+
           <ModelConfigButton onClick={() => setIsModalOpen(true)}>
             {t('token.label')}: {config.max_tokens}
           </ModelConfigButton>
-          
+
           <ModelConfigButton onClick={() => setIsModalOpen(true)}>
             {t('temperature.label')}: {config.temperature}
           </ModelConfigButton>
-          
+
           <ModelConfigButton onClick={() => setIsModalOpen(true)}>
             {t('topP.label')}: {config.top_p}
           </ModelConfigButton>

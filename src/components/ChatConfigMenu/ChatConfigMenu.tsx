@@ -20,8 +20,8 @@ const ChatConfigMenu = () => {
   const { t } = useTranslation('model');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   return (
-    <div className="w-full">
-      <SettingsButton 
+    <div className='w-full'>
+      <SettingsButton
         onClick={() => setIsModalOpen(true)}
         ariaLabel={t('defaultChatConfig') as string}
       >
@@ -120,9 +120,7 @@ const ChatConfigPopup = ({
           _frequencyPenalty={_frequencyPenalty}
           _setFrequencyPenalty={_setFrequencyPenalty}
         />
-        <SettingsButton 
-          onClick={handleReset}
-        >
+        <SettingsButton onClick={handleReset}>
           {t('resetToDefault')}
         </SettingsButton>
       </div>

@@ -12,7 +12,7 @@ const contextMenu = require('electron-context-menu');
 
 process.on('uncaughtException', (error) => {
   dialog.showErrorBox('An error occurred', error.stack);
- 
+
   process.exit(1);
 });
 
@@ -28,15 +28,14 @@ const instanceLock = app.requestSingleInstanceLock();
 
 if (require('electron-squirrel-startup')) app.quit();
 
-
 function getArgValue(argName) {
-  const args = process.argv.slice(1); 
-  const arg = args.find(a => a.startsWith(`${argName}=`));
+  const args = process.argv.slice(1);
+  const arg = args.find((a) => a.startsWith(`${argName}=`));
   return arg ? arg.split('=')[1] : null;
 }
 
-const devUrl = getArgValue('--url'); 
-const prodPath = path.join(__dirname, '../dist/index.html'); 
+const devUrl = getArgValue('--url');
+const prodPath = path.join(__dirname, '../dist/index.html');
 
 contextMenu({
   prepend: (_defaultActions, _parameters, _browserWindow) => [],
@@ -80,20 +79,16 @@ function createWindow() {
   win.maximize();
   win.show();
 
- 
   if (isDev) {
-    const loadUrl = devUrl || 'http://localhost:5173'; 
-    win.loadURL(loadUrl).catch(err => {
+    const loadUrl = devUrl || 'http://localhost:5173';
+    win.loadURL(loadUrl).catch((err) => {
       console.error('Failed to load dev URL:', loadUrl, err);
-      
     });
     win.webContents.openDevTools({ mode: 'detach' });
   } else {
-    win.loadFile(prodPath).catch(err => {
+    win.loadFile(prodPath).catch((err) => {
       console.error('Failed to load production file:', prodPath, err);
-      
     });
-    
   }
 
   win.on('close', function (event) {
@@ -106,7 +101,6 @@ function createWindow() {
   win.webContents.setWindowOpenHandler(({ url }) => {
     shell.openExternal(url);
 
-  
     return { action: 'deny' };
   });
 

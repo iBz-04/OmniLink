@@ -11,17 +11,14 @@ const Config = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
-    <div className="w-full">
-      <SettingsButton 
-        onClick={() => setIsModalOpen(true)}
-        id="api-menu"
-      >
-        <div className="flex items-center justify-center gap-2 w-full">
+    <div className='w-full'>
+      <SettingsButton onClick={() => setIsModalOpen(true)} id='api-menu'>
+        <div className='flex items-center justify-center gap-2 w-full'>
           <PersonIcon />
           <span>{t('api')}</span>
         </div>
       </SettingsButton>
-      
+
       {isModalOpen && <ApiMenu setIsModalOpen={setIsModalOpen} />}
     </div>
   );

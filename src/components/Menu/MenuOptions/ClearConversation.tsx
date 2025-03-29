@@ -21,13 +21,11 @@ const ClearConversation = () => {
   };
 
   return (
-    <div className="w-full">
-      <SettingsButton 
-        onClick={() => setIsModalOpen(true)}
-      >
+    <div className='w-full'>
+      <SettingsButton onClick={() => setIsModalOpen(true)}>
         {t('clearConversation')}
       </SettingsButton>
-      
+
       {isModalOpen && (
         <PopupModal
           setIsModalOpen={setIsModalOpen}

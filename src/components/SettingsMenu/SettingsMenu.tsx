@@ -42,27 +42,27 @@ const SettingsMenu = () => {
           title={t('setting') as string}
           cancelButton={false}
         >
-          <div className="mb-10 px-10 pt-3 mx-5 flex flex-col items-center gap-3">
-            <div className="grid grid-cols-1 gap-3 w-full max-w-md">
-              <div className="w-full">
+          <div className='mb-10 px-10 pt-3 mx-5 flex flex-col items-center gap-3'>
+            <div className='grid grid-cols-1 gap-3 w-full max-w-md'>
+              <div className='w-full'>
                 <LanguageSelector />
               </div>
-              <div className="w-full">
+              <div className='w-full'>
                 <ImportExportChat />
               </div>
-              <div className="w-full">
+              <div className='w-full'>
                 <Api />
               </div>
-              <div className="w-full">
+              <div className='w-full'>
                 <ClearConversation />
               </div>
-              <div className="w-full">
+              <div className='w-full'>
                 <PromptLibraryMenu />
               </div>
-              <div className="w-full">
+              <div className='w-full'>
                 <ChatConfigMenu />
               </div>
-              <div className="pt-4 flex flex-col gap-3 w-full">
+              <div className='pt-4 flex flex-col gap-3 w-full'>
                 {isElectron() && <CloseToTrayToggle />}
                 <AutoTitleToggle />
                 <EnterToSubmitToggle />
