@@ -257,7 +257,7 @@ function App() {
   return (
     <div
       tabIndex={0}
-      className='overflow-hidden w-full h-full relative'
+      className='overflow-hidden w-full h-full relative bg-neutral-dark text-custom-white'
       onKeyDown={handleKeyDown}
       onMouseUp={handleMouseUp}
     >

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const {
   dialog,
   app,
@@ -24,6 +25,7 @@ let win = null;
 let closeToTray = false;
 let winTray = null;
 let trayExists = false;
+let isQuiting = false;
 const instanceLock = app.requestSingleInstanceLock();
 
 if (require('electron-squirrel-startup')) app.quit();
@@ -31,11 +33,12 @@ if (require('electron-squirrel-startup')) app.quit();
 const PORT = isDev ? '5173' : '51736';
 
 contextMenu({
-  prepend: (defaultActions, parameters, browserWindow) => [],
+  // eslint-disable-next-line no-unused-vars
+  prepend: (_defaultActions, _parameters, _browserWindow) => [],
 });
 
-function handleSetCloseToTray(event, setting) {
-  closeToTray = setting;
+function handleSetCloseToTray(event, value) {
+  closeToTray = value;
 
   if (process.platform !== 'darwin') {
     if (closeToTray && trayExists) {
@@ -44,7 +47,7 @@ function handleSetCloseToTray(event, setting) {
     }
 
     if (closeToTray && !trayExists) {
-      createTray(win);
+      createTray();
       trayExists = true;
     }
   }
@@ -60,6 +63,7 @@ function createWindow() {
   autoUpdater.checkForUpdatesAndNotify();
 
   win = new BrowserWindow({
+    icon: iconPath,
     autoHideMenuBar: true,
     show: false,
     webPreferences: {
@@ -80,7 +84,7 @@ function createWindow() {
   }
 
   win.on('close', function (event) {
-    if (closeToTray && !app.isQuiting) {
+    if (closeToTray && !isQuiting) {
       event.preventDefault();
       win.hide();
     }
@@ -97,7 +101,7 @@ function createWindow() {
   return win;
 }
 
-const createTray = (window) => {
+const createTray = () => {
   winTray = Tray(
     path.join(
       __dirname,
@@ -154,7 +158,7 @@ app.on('window-all-closed', () => {
 if (!instanceLock) {
   app.quit();
 } else {
-  app.on('second-instance', (event, commandLine, workingDirectory) => {
+  app.on('second-instance', (_event, _commandLine, _workingDirectory) => {
     if (win) {
       if (!win.isVisible()) win.show();
 

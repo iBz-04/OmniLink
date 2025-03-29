@@ -39,10 +39,10 @@ const MobileBar = () => {
   const goForward = useGoForward();
 
   return (
-    <div className='sticky top-0 left-0 w-full z-50 flex items-center border-b-2 border-neutral-base bg-neutral-dark px-2 pt-1.5 pb-1 text-custom-white sm:pl-3'>
+    <div className='sticky top-0 left-0 w-full z-50 flex items-center border-b border-neutral-base bg-neutral-dark px-3 py-2 text-custom-white sm:pl-3 backdrop-filter backdrop-blur-sm bg-opacity-90'>
       <button
         type='button'
-        className='-mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-neutral-light mr-4'
+        className='inline-flex h-9 w-9 items-center justify-center rounded-md hover:bg-neutral-light/40 transition-colors duration-200 mr-4'
         onClick={() => {
           setHideSideMenu(!hideSideMenu);
         }}
@@ -58,7 +58,7 @@ const MobileBar = () => {
       </div>
       <button
         type='button'
-        className={`-mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-neutral-light ${
+        className={`inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors duration-200 hover:bg-neutral-light/40 ${
           generating
             ? 'cursor-not-allowed opacity-40'
             : 'cursor-pointer opacity-100'
@@ -69,12 +69,12 @@ const MobileBar = () => {
           }
         }}
       >
-        <span className='sr-only'>Open sidebar</span>
+        <span className='sr-only'>Go back</span>
         <BackIcon height='1em' />
       </button>
       <button
         type='button'
-        className={`-mt-0.5 inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-neutral-light ${
+        className={`inline-flex h-9 w-9 items-center justify-center rounded-md transition-colors duration-200 hover:bg-neutral-light/40 ${
           generating
             ? 'cursor-not-allowed opacity-40'
             : 'cursor-pointer opacity-100'
@@ -85,7 +85,7 @@ const MobileBar = () => {
           }
         }}
       >
-        <span className='sr-only'>Open sidebar</span>
+        <span className='sr-only'>Go forward</span>
         <ForwardIcon height='1em' />
       </button>
       <h1 className='flex-1 text-center text-base font-normal px-2 py-0 max-h-20 overflow-y-auto'>

@@ -32,7 +32,10 @@ module.exports = {
   plugins: ['@typescript-eslint', 'react'],
   rules: {
     // '@typescript-eslint/no-this-alias': 'warn',
-    // '@typescript-eslint/no-unused-vars': 'warn',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { argsIgnorePattern: '^_', varsIgnorePattern: '^_' },
+    ],
     // 'no-useless-escape': 'warn',
     '@typescript-eslint/no-explicit-any': 'off',
     'react/display-name': 'off',

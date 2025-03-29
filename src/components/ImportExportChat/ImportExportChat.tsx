@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 
 import ExportIcon from '@icon/ExportIcon';
 import PopupModal from '@components/PopupModal';
+import SettingsButton from '@components/common/SettingsButton';
 
 import ImportChat from './ImportChat';
 import ExportChat from './ExportChat';
@@ -13,16 +14,14 @@ const ImportExportChat = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   return (
-    <>
-      <button
-        className='btn btn-neutral gap-3 bg-neutral-light'
-        onClick={() => {
-          setIsModalOpen(true);
-        }}
+    <div className="w-full">
+      <SettingsButton 
+        onClick={() => setIsModalOpen(true)}
+        ariaLabel={t('import.export') as string}
       >
-        <ExportIcon className='w-4 h-4' />
-        {t('import')} / {t('export')} {t('data')}
-      </button>
+        {t('import.export')}
+      </SettingsButton>
+      
       {isModalOpen && (
         <PopupModal
           title={`${t('import')} / ${t('export')} ${t('data')}`}
@@ -37,7 +36,7 @@ const ImportExportChat = () => {
           </div>
         </PopupModal>
       )}
-    </>
+    </div>
   );
 };
 

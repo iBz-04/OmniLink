@@ -9,22 +9,21 @@ import CrossIcon from '@icon/CrossIcon';
 import { v4 as uuidv4 } from 'uuid';
 import ImportPrompt from './ImportPrompt';
 import ExportPrompt from './ExportPrompt';
+import SettingsButton from '@components/common/SettingsButton';
 
 const PromptLibraryMenu = () => {
   const { t } = useTranslation();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
   return (
-    <div>
-      <button
-        className='btn btn-neutral bg-neutral-light'
+    <div className="w-full">
+      <SettingsButton 
         onClick={() => setIsModalOpen(true)}
-        aria-label={t('promptLibrary') as string}
       >
         {t('promptLibrary')}
-      </button>
-      {isModalOpen && (
-        <PromptLibraryMenuPopUp setIsModalOpen={setIsModalOpen} />
-      )}
+      </SettingsButton>
+      
+      {isModalOpen && <PromptLibraryPopup setIsModalOpen={setIsModalOpen} />}
     </div>
   );
 };

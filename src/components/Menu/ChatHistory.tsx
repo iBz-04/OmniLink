@@ -11,9 +11,9 @@ import useStore from '@store/store';
 
 const ChatHistoryClass = {
   normal:
-    'flex py-2 px-2 items-center gap-3 relative rounded-md bg-opacity-0 hover:bg-opacity-20 hover:bg-custom-white break-all hover:pr-4 group transition-opacity',
+    'flex py-2.5 px-3 items-center gap-3 relative rounded-md bg-opacity-0 hover:bg-opacity-20 hover:bg-custom-white break-all hover:pr-4 group transition-all duration-200 ease-in-out',
   active:
-    'flex py-2 px-2 items-center gap-3 relative rounded-md break-all pr-14 bg-accent-dark bg-opacity-40 group hover:bg-opacity-100 transition-opacity',
+    'flex py-2.5 px-3 items-center gap-3 relative rounded-md break-all pr-14 bg-accent-dark bg-opacity-40 group hover:bg-opacity-80 transition-all duration-200 ease-in-out border-l-2 border-accent-dark',
 };
 
 const ChatHistory = React.memo(

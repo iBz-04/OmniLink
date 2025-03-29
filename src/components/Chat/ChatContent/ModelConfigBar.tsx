@@ -6,6 +6,7 @@ import ConfigMenu from '@components/ConfigMenu';
 import { ChatInterface, ConfigInterface } from '@type/chat';
 import { _defaultChatConfig } from '@constants/chat';
 import { ModelSelect } from '@components/ConfigMenu/ModelSelect';
+import ModelConfigButton from '@components/common/ModelConfigButton';
 
 const ModelConfigBar = React.memo(() => {
   const { t } = useTranslation('model');
@@ -42,48 +43,34 @@ const ModelConfigBar = React.memo(() => {
 
   return config ? (
     <>
-      <div className='sticky p-1 pb-0.5  mb-19 top-0 flex gap-x-3 gap-y-1 flex-wrap w-full items-center justify-center border-b-2 border-neutral-base bg-neutral-dark text-custom-white z-50'>
-        <div className='sticky top-0 flex gap-x-1 gap-y-0 flex-wrap w-full items-center justify-center pt-0 pb-1'>
-          <div className='flex -mb-3 mr-1 mt-1'>
+      <div className='sticky top-0 z-50 border-b border-neutral-base bg-neutral-dark text-custom-white backdrop-filter backdrop-blur-sm bg-opacity-90'>
+        <div className='flex items-center justify-center flex-wrap gap-2 py-2 px-3'>
+          <div className='flex items-center'>
             <ModelSelect
               _model={config.model_selection}
               _setModel={(ac) => {
                 const newModel = (ac.valueOf() as number) || 0;
-
                 const updatedConfig = {
                   ...config,
                   model_selection: newModel as number,
                 };
-
                 setConfig(updatedConfig);
               }}
               showHidden={false}
             />
           </div>
-          <div
-            className='text-center p-1.5 rounded-md btn-neutral cursor-pointer'
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          >
+          
+          <ModelConfigButton onClick={() => setIsModalOpen(true)}>
             {t('token.label')}: {config.max_tokens}
-          </div>
-          <div
-            className='text-center p-1.5 rounded-md btn-neutral cursor-pointer'
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          >
+          </ModelConfigButton>
+          
+          <ModelConfigButton onClick={() => setIsModalOpen(true)}>
             {t('temperature.label')}: {config.temperature}
-          </div>
-          <div
-            className='text-center p-1.5 rounded-md btn-neutral cursor-pointer'
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          >
+          </ModelConfigButton>
+          
+          <ModelConfigButton onClick={() => setIsModalOpen(true)}>
             {t('topP.label')}: {config.top_p}
-          </div>
+          </ModelConfigButton>
         </div>
       </div>
       {isModalOpen && (

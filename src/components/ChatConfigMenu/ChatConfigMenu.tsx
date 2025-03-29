@@ -14,19 +14,19 @@ import {
 import { ModelSelect } from '@components/ConfigMenu/ModelSelect';
 
 import { _defaultChatConfig, _defaultSystemMessage } from '@constants/chat';
+import SettingsButton from '@components/common/SettingsButton';
 
 const ChatConfigMenu = () => {
   const { t } = useTranslation('model');
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   return (
-    <div>
-      <button
-        className='btn btn-neutral bg-neutral-light'
+    <div className="w-full">
+      <SettingsButton 
         onClick={() => setIsModalOpen(true)}
-        aria-label={t('defaultChatConfig') as string}
+        ariaLabel={t('defaultChatConfig') as string}
       >
         {t('defaultChatConfig')}
-      </button>
+      </SettingsButton>
       {isModalOpen && <ChatConfigPopup setIsModalOpen={setIsModalOpen} />}
     </div>
   );
@@ -120,12 +120,11 @@ const ChatConfigPopup = ({
           _frequencyPenalty={_frequencyPenalty}
           _setFrequencyPenalty={_setFrequencyPenalty}
         />
-        <div
-          className='btn btn-neutral cursor-pointer mt-5'
+        <SettingsButton 
           onClick={handleReset}
         >
           {t('resetToDefault')}
-        </div>
+        </SettingsButton>
       </div>
     </PopupModal>
   );

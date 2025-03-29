@@ -207,7 +207,7 @@ const ApiMenu = ({
           </div>
           <div className='flex justify-center mt-4 mb-8'>
             <button
-              className='cursor-pointer p-2 mt-0 rounded-xl btn btn-neutral w-full sm:w-auto'
+              className='cursor-pointer p-2.5 rounded-xl btn btn-neutral w-full sm:w-auto transition-all duration-200 hover:bg-neutral-light/50 shadow-sm flex items-center justify-center'
               onClick={addApi}
             >
               <PlusIcon />

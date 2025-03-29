@@ -5,6 +5,7 @@ import useStore from '@store/store';
 import PopupModal from '@components/PopupModal';
 import DeleteIcon from '@icon/DeleteIcon';
 import useInitialiseNewChat from '@hooks/useInitialiseNewChat';
+import SettingsButton from '@components/common/SettingsButton';
 
 const ClearConversation = () => {
   const { t } = useTranslation();
@@ -20,17 +21,13 @@ const ClearConversation = () => {
   };
 
   return (
-    <>
-      <button
-        className='btn btn-neutral gap-3 bg-neutral-light'
-        onClick={() => {
-          setIsModalOpen(true);
-        }}
-        aria-label={t('clearConversation') as string}
+    <div className="w-full">
+      <SettingsButton 
+        onClick={() => setIsModalOpen(true)}
       >
-        <DeleteIcon />
         {t('clearConversation')}
-      </button>
+      </SettingsButton>
+      
       {isModalOpen && (
         <PopupModal
           setIsModalOpen={setIsModalOpen}
@@ -39,7 +36,7 @@ const ClearConversation = () => {
           handleConfirm={handleConfirm}
         />
       )}
-    </>
+    </div>
   );
 };
 

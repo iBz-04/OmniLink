@@ -67,9 +67,9 @@ export const TemperatureSlider = ({
           _setTemperature(Number(e.target.value));
         }}
         min={0}
-        max={2}
-        step={0.1}
-        className='w-full h-2 bg-neutral-light rounded-lg appearance-none cursor-pointer'
+        max={1}
+        step={0.05}
+        className='w-full h-2 bg-neutral-light rounded-lg appearance-none cursor-pointer mt-2 mb-1 accent-accent-dark'
       />
       <div className='min-w-fit text-custom-white text-sm mt-2'>
         {t('temperature.description')}
